@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'LoginScreen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -53,6 +55,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool activeFlatButtonColor = true;
+  bool activeRaisedButtonColor = true;
+  bool activeAqsaButtonColor = true;
 
   void _incrementCounter() {
     setState(() {
@@ -65,12 +70,35 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void testFunction() {
-    // function for flat button click working
+  void changeFlatButtonColor() {
+    setState(() {
+      activeFlatButtonColor = !activeFlatButtonColor;
+    });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    // if (activeFlatButtonColor == true) {
+    //   activeFlatButtonColor = true;
+    // } else {
+    //   activeFlatButtonColor = true;
+    // }
   }
 
-  void callFunction() {
-    // new function for raised button
+  void changeRaisedButtonColor() {
+    setState(() {
+      activeRaisedButtonColor = !activeRaisedButtonColor;
+    });
+    // if (activeRaisedButtonColor == true) {
+    //  activeRaisedButtonColor = true;
+    // } else {
+    //   activeRaisedButtonColor = true;
+    // }
+    // }
+  }
+
+  void changeAqsaButtonColor() {
+    setState(() {
+      activeAqsaButtonColor = !activeAqsaButtonColor;
+    });
   }
 
   @override
@@ -115,11 +143,30 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
             ),
-            FlatButton(onPressed: testFunction, child: Text('Hello Flat Button')),
+            FlatButton(
+              onPressed: changeFlatButtonColor,
+              child: Text('Hello Flat Button'),
+              color: activeFlatButtonColor ? Colors.red : Colors.blue,
+            ),
             RaisedButton(
-                onPressed: callFunction, child: Text('Hello Raised Button')),
+              onPressed: changeRaisedButtonColor,
+              child: Text('Hello Raised Button'),
+              color: activeRaisedButtonColor ? Colors.blue : Colors.red,
+            ),
+            Text(
+              "AQSA ZAHEER",
+              style: TextStyle(
+                  color: activeFlatButtonColor ? Colors.green : Colors.blue),
+            ),
+            FlatButton(
+              onPressed: changeFlatButtonColor,
+              child: Text("Change Color"),
+            )
           ],
         ),
       ),
